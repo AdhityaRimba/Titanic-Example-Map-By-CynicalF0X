@@ -1,0 +1,70 @@
+<!--
+This is the Create Island level file. It sets the size of the level, what environment to use and all objects, such as vox-models, scripts and boundary, used in the level.
+Positions are given in meters relative to their parent objects position. In this level no objects are parented and hence positions are in reference to the bottom center of the game world.
+Sizes are given in voxels. One voxel is 0.1 meters on all sides.
+In this scene the loaded vox file 'island.vox' is made of several shapes in MagicaVoxel. When loaded in the game they are regarded as one vox. This opens up the possibility of building worlds larger than 256*256*256 voxels with MagicaVoxel. Observe that the individual shapes in the MagicaVoxel scene are all smaller than the maximum shape size possible in MagicaVoxel. This is because the physics in the game might stutter slightly when very large shapes are used.
+Whats new in this scene compared to the basic scene:
+- On line 21 the color of the voxbox is set with the 'color' property.
+- On line 30 a texture is applied to the loaded vox file with the 'texture' property.
+- On line 56 we are adding water to the level
+-->
+
+<!-- 
+The 'version' indicates what version of the editor was used to create the level. Leave it as is to make sure scripts are loaded as expected.
+The 'shadowVolume' property sets the area of the game where lighting, and subsequently shadows, are calculated. It is expressed in meters; width, height, length
+-->
+<scene version="3" shadowVolume="200 100 200">
+	<!-- 
+	This sets the environment used for the level. 
+	The 'template' property references a predefined setup of environments. Available environment templates are: 'sunny', 'night', 'sunset', 'sunrise', 'foggy', and 'rain'
+	--> 
+	<environment template="sunny"/>
+	<body>
+		<!--
+		A voxbox is a basic box shape. By default it is indestructible.
+		The 'pos' property sets the position of the box's top-upper-left corner relative to the bottom center of the game world, in meters.
+		The 'size' property sets the size of the box in voxels as; width, height, and length.
+		The 'color' property sets the color of the voxbox with the values being the Red, Gren, and Blue components in the color, each in the range 0.0 - 1.0
+		-->
+		<voxbox pos="-100.0 -0.1 -100.0" size="2000 1 2000" color="0.0 0.0 0.0"/>
+	</body>
+
+	<body>
+		<!-- 
+		A vox is a voxel model loaded from a vox-file
+		The 'pos' property sets it's position relative to the bottom center of the game world, in meters. 
+		The 'texure' property is used to apply one of the available textures. The first value, to the left of the space, is the index for the wanted texture. The textures can be found in the 'data/gfx/albedo.png' file in the installation folder. The top left white texture is number 0. The second value, to the right of the space, indicates how strong the texture should be applied in the range 0.0 - 1.0. 
+		The 'file' property references the vox-file to be loaded. The 'LEVEL' keyword is a reference to the folder with the same name as the level file i.e., The keyword 'LEVEL' in the island.xml level file (this file) references the folder named 'island'.
+		-->
+		<vox pos="0 -1 0.0" texture="0 0" file="LEVEL/titanic.vox"/>
+
+
+</body>
+	
+	<!-- 
+	The boundary is the orange grid which the player can not pass through. It is defined by a number of vertices.
+	-->
+	<boundary>
+		<!-- 
+		These vertices defines the boundary of the game level.
+		The 'pos' property sets the position of the vertex relative to the bottom center of the game world, in meters. As the boundary has infinite height the positions are only given relative to width and length, without height.
+		-->
+		<vertex pos="-100.0 -100.0"/>
+		<vertex pos="100.0 -100.0"/>
+		<vertex pos="100.0 100.0"/>
+		<vertex pos="-100.0 100.0"/>
+	</boundary>
+	<!-- 
+	This loads and runs the referenced script when the level starts.
+	The 'file' property is the reference to which script should be loaded and run. Since this file reference is not preceded by 'LEVEL/' it is loaded from the 'data/script' folder in the installation folder.
+	-->
+	<script file="../../data/script/main.lua"/>
+	<!--
+	This adds a plane of water to the level.
+	The 'pos' property sets the location of the center of the water in relation to the game world, in meters.
+	-->
+	<water pos="0.0 3.0 0.0"/>
+</scene>
+<!-- Build 0.1 made by CynicalF0X 19:47 CET 15/11/20-->
+<!-- Build 0.2 made by CynicalF0X 13:08 CET 19/11/20-->
+
