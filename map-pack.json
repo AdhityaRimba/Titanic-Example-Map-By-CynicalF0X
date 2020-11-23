@@ -2,6 +2,7 @@
 	"Name": "Titanic",
 	"Author": "CynicalF0X",
 	"Description": "This is titanic maps in Teardown",
+	"Version": "v0.2",
 	"ImageUrl": "https://teardownmods.s3.us-east-1.wasabisys.com/monthly_2020_11/1.PNG.60dceba89e4f56cea679f2498e3712bc.PNG",
 	"Map": "maps/castle.xml",
 	"Voxels": [
